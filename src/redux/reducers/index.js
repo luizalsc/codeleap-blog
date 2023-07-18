@@ -1,7 +1,7 @@
 import {
   LOGIN,
   LOGIN_STATUS,
-  POST_SUBMITION_CONTENT,
+  POSTS_LIST,
   
 } from '../../actions'
 import { combineReducers } from "redux"
@@ -23,8 +23,8 @@ export function userReducer(state = {}, action){
 
 export function postListReducer( state = [], action){
   switch(action.type){
-    case POST_SUBMITION_CONTENT: {
-      return[...state, action.payload]
+    case POSTS_LIST: {
+      return action.payload
     }
     default:
       return state

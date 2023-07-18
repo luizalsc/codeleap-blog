@@ -1,6 +1,6 @@
 export const LOGIN = 'LOGIN'
 export const LOGIN_STATUS = 'LOGIN_STATUS'
-export const POST_SUBMITION_CONTENT = 'POST_SUBMITION_CONTENT'
+export const POSTS_LIST = 'POSTS_LIST'
 
 
 export function login (profile){
@@ -16,9 +16,9 @@ export function loginStatus (status){
   }
 }
 
-export function postSubmtionContent (post){
+export function setPostsList (post){
   return{
-    type: POST_SUBMITION_CONTENT,
+    type: POSTS_LIST,
     payload: post
   }
 }

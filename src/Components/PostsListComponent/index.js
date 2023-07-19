@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { setPostsList, showEditModal, showDeleteModal, setOffsetNumber } from '../../actions'
 import { EditModal } from '../Modals/EditModal'
 import { DeleteModal } from '../Modals/DeleteModal'
+import moment from 'moment'
 
 const PostsList = () =>{
   const dispatch = useDispatch()
@@ -51,12 +52,19 @@ const PostsList = () =>{
     }
     fetchData()
   }
+
   
   if(posts.length === 0) {
     return (<></>)
   }else{
     return(
       <div id='container'>
+        <button onClick={handleViewPrevious} disabled={offset === 0 ? true : false}>
+          <a href='#container'>Previous</a>
+        </button>
+        <button onClick={handleViewNext}>
+          <a href='#container'>Next</a>
+        </button>
         <ul>
           {posts.map((post, index) => (
             <li key={`${post.title}-${index}`}>
@@ -70,7 +78,7 @@ const PostsList = () =>{
                 </div> : 
                   <></>}
               <p>@{post.username}</p>
-              <p>creation data</p>
+              <p>{moment(new Date(post.created_datetime)).fromNow()}</p>
               <p>{post.content}</p>
             </li>))
           }       

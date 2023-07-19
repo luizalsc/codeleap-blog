@@ -10,8 +10,8 @@ async function createNewPost (post){
   return (await response.json())
 }
 
-async function getPostsList(){
-  const response = await fetch('https://dev.codeleap.co.uk/careers/')
+async function getPostsList(offsetNumber){
+  const response = await fetch(`https://dev.codeleap.co.uk/careers/?limit=10&offset=${offsetNumber}`)
   return (await response.json())
 }
 

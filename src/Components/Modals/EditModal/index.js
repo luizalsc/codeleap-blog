@@ -9,6 +9,7 @@ const EditModal = ({title, content}) => {
   const dispatch = useDispatch()
   const status = useSelector((state)=>state.editStatus.status)
   const id = useSelector((state)=>state.editStatus.id)
+  const offset = useSelector((state)=>state.offset)
   
   const [post, setPost] = useState({})
 
@@ -25,7 +26,7 @@ const EditModal = ({title, content}) => {
     event.preventDefault()
     const fetchData = async () =>{
       await editPost(id, post)
-      const postsList = await getPostsList()
+      const postsList = await getPostsList(offset)
       dispatch(setPostsList(postsList.results))
     }
  

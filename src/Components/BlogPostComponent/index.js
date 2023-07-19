@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { createNewPost, getPostsList } from '../../services'
+import { createNewPost, getPostsList} from '../../services'
 import { useDispatch } from 'react-redux'
 import { setPostsList } from '../../actions'
 
@@ -8,7 +8,7 @@ const PostComponent = ({content, title})=>{
 
   const dispatch = useDispatch()
   const user = useSelector((state)=> state.user)
-
+  const offset = useSelector((state)=> state.offset)
 
   const [post, setPost] = useState({
     username: user.profile.username
@@ -23,12 +23,14 @@ const PostComponent = ({content, title})=>{
     event.preventDefault()
     const fetchData = async () =>{
       await createNewPost(post)
-      const postsList = await getPostsList()
+      const postsList = await getPostsList(offset)
       dispatch(setPostsList(postsList.results))
     }
- 
+
   fetchData()
+  event.target.reset()
   }
+
   
   return(
     <div>

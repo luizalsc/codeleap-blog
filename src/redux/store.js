@@ -4,14 +4,16 @@ import {
   userReducer,
   postListReducer,
   editModalReducer,
-  deleteModalReducer
+  deleteModalReducer,
+  offsetNumberReducer
 } from './reducers'
 
 const rootReducer = combineReducers({
   user: userReducer,
   posts: postListReducer,
   editStatus: editModalReducer,
-  deleteStatus: deleteModalReducer
+  deleteStatus: deleteModalReducer,
+  offset: offsetNumberReducer
 })
 
 const store = createStore(rootReducer)

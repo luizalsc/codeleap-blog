@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { getPostsList, deletePost } from '../../services'
+import { getPostsList } from '../../services'
 import { useEffect } from 'react'
-import { setPostsList, showEditModal, showDeleteModal } from '../../actions'
+import { setPostsList, showEditModal, showDeleteModal, setOffsetNumber } from '../../actions'
 import { EditModal } from '../Modals/EditModal'
 import { DeleteModal } from '../Modals/DeleteModal'
 
@@ -9,10 +9,11 @@ const PostsList = () =>{
   const dispatch = useDispatch()
   const posts = useSelector((state)=>state.posts)
   const user = useSelector((state)=>state.user)
+  let offset = useSelector((state)=>state.offset)
 
   useEffect(()=>{
     const fetchData = async()=>{
-      const postsList = await getPostsList()
+      const postsList = await getPostsList(offset)
       dispatch(setPostsList(postsList.results))
     } 
     fetchData()
@@ -27,12 +28,35 @@ const PostsList = () =>{
       const id = event.target.value
       dispatch(showEditModal({status: true, id: id}))
   } 
+
+  const handleViewNext = ()=>{
+    offset = offset + 10
+    dispatch(setOffsetNumber(offset))
+ 
+    const fetchData = async () =>{
+      const postsList = await getPostsList(offset)
+      dispatch(setPostsList(postsList.results))
+    }
+    fetchData()
+  }
+
+  const handleViewPrevious = (event)=>{
+  
+    offset = offset - 10
+    dispatch(setOffsetNumber(offset))
+
+    const fetchData = async () =>{
+      const postsList = await getPostsList(offset)
+      dispatch(setPostsList(postsList.results))
+    }
+    fetchData()
+  }
   
   if(posts.length === 0) {
     return (<></>)
   }else{
     return(
-      <div>
+      <div id='container'>
         <ul>
           {posts.map((post, index) => (
             <li key={`${post.title}-${index}`}>
@@ -51,6 +75,12 @@ const PostsList = () =>{
             </li>))
           }       
         </ul>
+        <button onClick={handleViewPrevious} disabled={offset === 0 ? true : false}>
+          <a href='#container'>Previous</a>
+        </button>
+        <button onClick={handleViewNext}>
+          <a href='#container'>Next</a>
+        </button>
       </div>
     )
   }

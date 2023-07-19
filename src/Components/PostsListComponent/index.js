@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { getPostsList, deletePost } from '../../services'
 import { useEffect } from 'react'
-import { setPostsList, showEditModal } from '../../actions'
+import { setPostsList, showEditModal, showDeleteModal } from '../../actions'
 import { EditModal } from '../Modals/EditModal'
+import { DeleteModal } from '../Modals/DeleteModal'
 
 const PostsList = () =>{
   const dispatch = useDispatch()
@@ -18,14 +19,8 @@ const PostsList = () =>{
   }, [])
 
   const handleDelete = (event)=>{
-    const postId = event.target.value
-    console.log(postId)
-    const fetchData = async()=>{
-      await deletePost(postId)
-      const postsList = await getPostsList()
-      dispatch(setPostsList(postsList.results))
-    } 
-    fetchData()
+    const id = event.target.value
+    dispatch(showDeleteModal({status: true, id: id}))
   } 
 
   const handleEdit = (event)=>{
@@ -33,8 +28,6 @@ const PostsList = () =>{
       dispatch(showEditModal({status: true, id: id}))
   } 
   
-  
-
   if(posts.length === 0) {
     return (<></>)
   }else{
@@ -47,6 +40,7 @@ const PostsList = () =>{
               {user.profile.username === post.username ? 
                 <div>
                   <button onClick={handleDelete} value={post.id}>delete</button>
+                  <DeleteModal/>
                   <button onClick={handleEdit} value={post.id}>edit</button>
                   <EditModal/>
                 </div> : 

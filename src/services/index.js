@@ -16,8 +16,24 @@ async function getPostsList(){
 }
 
 async function deletePost(postId){
-  const response = await fetch(`https://dev.codeleap.co.uk/careers/${postId}`)
-  return (await response.json())
+  await fetch(`https://dev.codeleap.co.uk/careers/${postId}/`, {
+    method: 'DELETE'
+    })
 }
 
-export { createNewPost, getPostsList, deletePost }
+async function editPost(postId, post){
+  const response = await fetch(`https://dev.codeleap.co.uk/careers/${postId}/`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      title: post.title,
+      content: post.content
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    })
+    const editedPost = await response.json()
+    return (editedPost)
+}
+
+export { createNewPost, getPostsList, deletePost, editPost }

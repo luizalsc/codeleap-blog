@@ -2,7 +2,8 @@ import {
   LOGIN,
   LOGIN_STATUS,
   POSTS_LIST,
-  
+  SHOW_DELETE_MODAL,
+  SHOW_EDIT_MODAL
 } from '../../actions'
 import { combineReducers } from "redux"
 
@@ -15,7 +16,6 @@ export function userReducer(state = {}, action){
     case LOGIN_STATUS: {
       return {...state, status: action.payload}
     }
-
     default:
       return state
   }
@@ -31,9 +31,32 @@ export function postListReducer( state = [], action){
   }
 }
 
+export function editModalReducer( state = false, action){
+  switch(action.type){
+    case SHOW_EDIT_MODAL: {
+      return action.payload
+    }
+    default:
+      return state
+  }
+}
+
+export function deleteModalReducer( state = false, action){
+  switch(action.type){
+    case SHOW_DELETE_MODAL: {
+      return action.payload
+    }
+    default:
+      return state
+  }
+}
+
+
 const rootReducer = combineReducers({
   user: userReducer,
-  posts: postListReducer
+  posts: postListReducer,
+  editStatus: editModalReducer,
+  deleteStatus: deleteModalReducer
 })
 
 export default rootReducer

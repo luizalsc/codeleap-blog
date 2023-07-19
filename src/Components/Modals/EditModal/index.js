@@ -18,7 +18,7 @@ const EditModal = ({title, content}) => {
   }
 
   const handleClose = ()=>{
-    dispatch(showEditModal(false))
+    dispatch(showEditModal({status: false}))
   }
 
   const handleSubmit = (event)=>{
@@ -39,7 +39,7 @@ const EditModal = ({title, content}) => {
 
   return(
     <div className='modal' onClick={handleClose}>
-      <div onClick={e => e.stopPropagation()}>
+      <div className='modal-content' onClick={e => e.stopPropagation()}>
         <h3>Edit Item</h3>
         <form onSubmit={handleSubmit}>
           <label role='labeltext'>Title</label>

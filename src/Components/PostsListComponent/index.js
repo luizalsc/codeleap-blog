@@ -1,41 +1,22 @@
-import { useSelector } from 'react-redux'
-import { deletePost } from '../../services'
+import { useDispatch, useSelector } from 'react-redux'
 import { getPostsList } from '../../services'
 import { useEffect, useState } from 'react'
+import { setPostsList } from '../../actions'
 
 const PostsList = () =>{
-
-  const [posts, setPosts] = useState([])
+  const dispatch = useDispatch()
+  const posts = useSelector((state)=>state.posts)
 
   useEffect(()=>{
     const fetchData = async()=>{
       const postsList = await getPostsList()
-      setPosts([...postsList.results])
-      console.log(posts)
+      dispatch(setPostsList(postsList.results))
     } 
     fetchData()
   }, [])
 
-  // const fetchPosts = async () => {
-  //   const postsList = await getPostsList()
-  //   dispatch(setPostsList(postsList.results))
-  //   return
-  // }
-  // fetchPosts()
-  
-  //const postList = useSelector((state) => state.posts)
-  //console.log(postList)
-
   const user = useSelector((state)=>state.user)
 
-  // const handleClick = (id)=>{
-  //   const fetchData = async () =>{
-  //     await deletePost(id) 
-  //   }
-  //   fetchData()
-  // }
-  
- 
   if(posts.length === 0) {
     return (<></>)
   }else{
@@ -55,6 +36,6 @@ const PostsList = () =>{
       </div>
     )
   }
-  
 }
+
 export { PostsList }

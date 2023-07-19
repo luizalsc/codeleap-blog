@@ -1,12 +1,15 @@
 import { useState } from 'react'
-import {  useDispatch, useSelector } from 'react-redux'
-//import { setPostsList } from '../../actions'
-import { createNewPost } from '../../services'
-
+import { useSelector } from 'react-redux'
+import { createNewPost, getPostsList } from '../../services'
+import { useDispatch } from 'react-redux'
+import { setPostsList } from '../../actions'
 
 const PostComponent = ({content, title})=>{
+
   const dispatch = useDispatch()
   const user = useSelector((state)=> state.user)
+
+
   const [post, setPost] = useState({
     username: user.profile.username
   })
@@ -19,18 +22,14 @@ const PostComponent = ({content, title})=>{
   const handleSubmit = (event)=>{
     event.preventDefault()
     const fetchData = async () =>{
-      await createNewPost(post) 
+      await createNewPost(post)
+      const postsList = await getPostsList()
+      dispatch(setPostsList(postsList.results))
     }
-    
+ 
   fetchData()
   }
-
-  // const fetchPosts = async () => {
-  //   const postsList = await getPostsList()
-  //   dispatch(setPostsList(postsList.results))
-  // }
-  // fetchPosts()
-
+  
   return(
     <div>
       <h3>What's on your mind?</h3>

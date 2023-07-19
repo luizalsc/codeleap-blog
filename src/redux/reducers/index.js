@@ -3,7 +3,8 @@ import {
   LOGIN_STATUS,
   POSTS_LIST,
   SHOW_DELETE_MODAL,
-  SHOW_EDIT_MODAL
+  SHOW_EDIT_MODAL,
+  OFFSET_NUMBER
 } from '../../actions'
 import { combineReducers } from "redux"
 
@@ -51,12 +52,23 @@ export function deleteModalReducer( state = false, action){
   }
 }
 
+export function offsetNumberReducer( state = 0, action){
+  switch(action.type){
+    case OFFSET_NUMBER: {
+      return action.payload
+    }
+    default:
+      return state
+  }
+}
+
 
 const rootReducer = combineReducers({
   user: userReducer,
   posts: postListReducer,
   editStatus: editModalReducer,
-  deleteStatus: deleteModalReducer
+  deleteStatus: deleteModalReducer,
+  offset: offsetNumberReducer
 })
 
 export default rootReducer

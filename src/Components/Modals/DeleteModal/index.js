@@ -7,6 +7,7 @@ const DeleteModal = ()=>{
   const dispatch = useDispatch()
   const status = useSelector((state)=>state.deleteStatus.status)
   const id = useSelector((state)=>state.deleteStatus.id)
+  const offset = useSelector((state)=>state.offset)
 
   const handleClose = ()=>{
     dispatch(showDeleteModal({status: false}))
@@ -15,7 +16,7 @@ const DeleteModal = ()=>{
   const handleDelete = ()=>{
     const fetchData = async()=>{
       await deletePost(id)
-      const postsList = await getPostsList()
+      const postsList = await getPostsList(offset)
       dispatch(setPostsList(postsList.results))
     } 
     fetchData()

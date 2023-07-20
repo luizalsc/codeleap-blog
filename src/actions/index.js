@@ -19,10 +19,10 @@ export function loginStatus (status){
   }
 }
 
-export function setPostsList (post){
+export function setPostsList (posts){
   return{
     type: POSTS_LIST,
-    payload: post
+    payload: posts
   }
 }
 

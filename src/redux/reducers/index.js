@@ -25,7 +25,7 @@ export function userReducer(state = {}, action){
 export function postListReducer( state = [], action){
   switch(action.type){
     case POSTS_LIST: {
-      return action.payload
+      return state.concat(action.payload)
     }
     default:
       return state

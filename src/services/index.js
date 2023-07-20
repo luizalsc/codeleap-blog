@@ -1,5 +1,4 @@
 async function createNewPost (post){
-
   const response = await fetch('https://dev.codeleap.co.uk/careers/', {
     method: 'POST',
     body: JSON.stringify(post),

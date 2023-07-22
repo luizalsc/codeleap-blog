@@ -1,18 +1,20 @@
+import './index.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPostsList } from '../../services'
 import { useEffect, useState } from 'react'
-import { setPostsList, showEditModal, showDeleteModal, setOffsetNumber } from '../../actions'
+import { setPostsList, showEditModal, showDeleteModal, setOffsetNumber, showMorePosts } from '../../actions'
 import { EditModal } from '../Modals/EditModal'
 import { DeleteModal } from '../Modals/DeleteModal'
 import moment from 'moment'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faPenToSquare} from '@fortawesome/free-solid-svg-icons'
 
 const PostsList = () =>{
   const dispatch = useDispatch()
   const posts = useSelector((state)=>state.posts)
   const user = useSelector((state)=>state.user)
   let offset = useSelector((state)=>state.offset)
-  
 
   const [hasMore, setHasMore] = useState(true)
 
@@ -24,13 +26,11 @@ const PostsList = () =>{
     fetchData()
   }, [])
 
-  const handleDelete = (event)=>{
-    const id = event.target.value
+  function handleDelete(id){
     dispatch(showDeleteModal({status: true, id: id}))
   } 
 
-  const handleEdit = (event)=>{
-      const id = event.target.value
+  function handleEdit (id){
       dispatch(showEditModal({status: true, id: id}))
   } 
 
@@ -39,7 +39,7 @@ const PostsList = () =>{
     dispatch(setOffsetNumber(offset))
     const fetchData = async () =>{
       const postsList = await getPostsList(offset)
-      dispatch(setPostsList(postsList.results))
+      dispatch(showMorePosts(postsList.results))
       if( posts.length === postsList.count ){
         setHasMore(false)
       }
@@ -56,19 +56,27 @@ const PostsList = () =>{
         <InfiniteScroll dataLength={posts.length} next={handleViewNext} hasMore={hasMore} loader={<p>Loading...</p>}>
           <ul>
             {posts.map((post, index) => (
-              <li key={`${post.id}-${index}`}>
-                <h3>{post.title}</h3>
-                {user.profile.username === post.username ? 
-                  <div>
-                    <button onClick={handleDelete} value={post.id}>delete</button>
-                    <DeleteModal/>
-                    <button onClick={handleEdit} value={post.id}>edit</button>
-                    <EditModal/>
-                  </div> : 
-                    <></>}
-                <p>@{post.username}</p>
-                <p>{moment(new Date(post.created_datetime)).fromNow()}</p>
-                <p>{post.content}</p>
+              <li key={`${post.id}-${index}`} className='list-item'>
+                <div className='item-menu'>
+                  <h3 className='header'>{post.title}</h3>
+                  {user.profile.username === post.username ? 
+                    <div className='buttons'>
+                      <button onClick={()=>{handleDelete(post.id)}} className='button'>
+                        <span><FontAwesomeIcon icon={faTrash} className='icon'/></span>
+                      </button>
+                      <DeleteModal/>
+                      <button onClick={()=>{handleEdit(post.id)}} value={post.id} className='button'><span><FontAwesomeIcon icon={faPenToSquare} className='icon'/></span></button>
+                      <EditModal/>
+                    </div> : 
+                      <></>}
+                </div>
+                <div className='author'>
+                  <p>@{post.username}</p>
+                  <p className='datetime'>{moment(new Date(post.created_datetime)).fromNow()}</p>
+                </div>
+                <div className='content'>
+                  <p>{post.content}</p>
+                </div>
               </li>))
             }       
           </ul>

@@ -1,12 +1,11 @@
+import './index.css'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { login, loginStatus } from '../../actions'
-import { MainScreenPage } from '../../Pages/MainScreenPage'
+import { Link } from 'react-router-dom'
 
 function SignupComponent (){
-
-  const user = useSelector((state)=>state.user)
- 
+  
   const dispatch = useDispatch()
 
   const [profile, setProfile] = useState({})
@@ -16,33 +15,37 @@ function SignupComponent (){
     const value = event.target.value
     setProfile({...profile,[event.target.name]: value})
   }
-  const handleSubmit = (event)=>{
-    event.preventDefault()
+  const handleSubmit = ()=>{
     dispatch(login(profile))
+    dispatch(loginStatus(true))
   }
 
-  if( user.profile === undefined || user.status === undefined){
     return(
-      <main>
-        <h1>Welcome to CodeLeap network!</h1>
-        <form value={profile} role='loginform' onSubmit={handleSubmit}>
-          <label htmlFor='username'>Please enter your username</label>
-          <input
-            type='text'
-            placeholder='John doe'
-            name='username'
-            onChange={handleInputChange}></input> 
-          <button
-            type='submit'
-            onClick={()=>{dispatch(loginStatus(true))}}>
-              ENTER
-          </button>
-        </form>
+      <main className='main'>
+        <div className='signup-container'>
+          <h1 className='header'>Welcome to CodeLeap network!</h1>
+          <div value={profile} role='loginform' onSubmit={handleSubmit} className='signup-form'>
+            <label htmlFor='username' className='label'>Please enter your username</label>
+            <input
+              type='text'
+              placeholder='John doe'
+              name='username'
+              onChange={handleInputChange}
+              className='input-field'></input> 
+            <Link to={`/posts`}>
+              <div>
+                <button
+                className='button'
+                value={profile}
+                type='submit'
+                onClick={handleSubmit}>ENTER
+                </button>
+              </div>
+            </Link>
+          </div>
+        </div>
       </main>
     )
-  }else{ return <MainScreenPage /> }
-
-  
 }
 
 export { SignupComponent }

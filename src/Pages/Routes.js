@@ -4,15 +4,16 @@ import { MainScreenPage } from './MainScreenPage'
 
 
 function AppRoutes (){
+  
+    return(
+      <BrowserRouter>
+        <Routes>
+          <Route exact path='/' element={<SignupPage />}/>
+          <Route exact path='/posts' element={<MainScreenPage />}/>
+        </Routes>
+      </BrowserRouter>
+    )
 
-  return(
-    <BrowserRouter>
-      <Routes>
-        <Route exact path='/' element={<SignupPage />}/>
-        <Route exact path='/posts' element={<MainScreenPage/>}/> 
-      </Routes>
-    </BrowserRouter>
-  )
 }
 
 export { AppRoutes }

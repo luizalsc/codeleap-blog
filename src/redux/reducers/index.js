@@ -4,7 +4,8 @@ import {
   POSTS_LIST,
   SHOW_DELETE_MODAL,
   SHOW_EDIT_MODAL,
-  OFFSET_NUMBER
+  OFFSET_NUMBER,
+  SHOW_MORE_POSTS
 } from '../../actions'
 import { combineReducers } from "redux"
 
@@ -25,6 +26,9 @@ export function userReducer(state = {}, action){
 export function postListReducer( state = [], action){
   switch(action.type){
     case POSTS_LIST: {
+      return action.payload
+    }
+    case SHOW_MORE_POSTS: {
       return state.concat(action.payload)
     }
     default:

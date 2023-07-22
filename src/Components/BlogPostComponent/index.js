@@ -1,3 +1,4 @@
+import './index.css'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { createNewPost, getPostsList} from '../../services'
@@ -26,35 +27,37 @@ const PostComponent = ({content, title})=>{
       const postsList = await getPostsList(offset)
       dispatch(setPostsList(postsList.results))
     }
-
   fetchData()
   event.target.reset()
   }
 
   
   return(
-    <div>
-      <h3>What's on your mind?</h3>
+    <div className='post-container'>
       <form
         onSubmit={handleSubmit}
-        role='postForm'>
-        <label role='labeltext'>Title</label>
+        role='postForm'
+        className='form-container'>
+        <h3 className='header'>What's on your mind?</h3>
+        <label role='labeltext' className='label'>Title</label>
         <input
           type='text'
           value={title}
           name='title'
           placeholder='Hello world'
-          onChange={handleChange}></input>
+          onChange={handleChange}
+          className='input-field'></input>
         <br/>
-        <label role='labeltext'>Content</label>
+        <label role='labeltext' className='label'>Content</label>
         <textarea
           cols='30'
           rows='10'
           name='content'
           value={content}
           onChange={handleChange}
-          placeholder='Content here'></textarea>
-        <button type='submit'>Create</button>
+          placeholder='Content here'
+          className='input-field'></textarea>
+        <button type='submit' className='button'>Create</button>
       </form>
     </div>
   )

@@ -7,8 +7,6 @@ const DeleteModal = ()=>{
   const dispatch = useDispatch()
   const status = useSelector((state)=>state.deleteStatus.status)
   const id = useSelector((state)=>state.deleteStatus.id)
-  const offset = useSelector((state)=>state.offset)
-
   const handleClose = ()=>{
     dispatch(showDeleteModal({status: false}))
   }
@@ -16,7 +14,7 @@ const DeleteModal = ()=>{
   const handleDelete = ()=>{
     const fetchData = async()=>{
       await deletePost(id)
-      const postsList = await getPostsList(offset)
+      const postsList = await getPostsList()
       dispatch(setPostsList(postsList.results))
     } 
     fetchData()
@@ -30,9 +28,11 @@ const DeleteModal = ()=>{
   return(
     <div className='modal' onClick={handleClose}>
       <div className='modal-content' onClick={e => e.stopPropagation()}>
-        <h3>Are you sure you want to delete this item?</h3>
-        <button onClick={handleClose}>Cancel</button>
-        <button onClick={handleDelete}>Delete</button>
+        <h3 className='header'>Are you sure you want to delete this item?</h3>
+        <div className='buttons-container'>
+          <button onClick={handleClose} className='button'>Cancel</button>
+          <button onClick={handleDelete} className='button delete'>Delete</button>
+        </div>
       </div>
     </div>
   )

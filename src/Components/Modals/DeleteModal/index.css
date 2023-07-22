@@ -4,14 +4,45 @@
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(56, 56, 56, 0.2);
+  background-color: rgba(119, 119, 119, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
 }
 
 .modal-content{
+  border-radius: 16px;
   width: 500px;
   background-color: #fff;
+  max-height: 146px;
+  padding: 24px;
+  width: 660px;
+}
+
+.modal-content .header{
+  font-size: 22px;
+  color: #000;
+  padding-bottom: 40px;
+}
+
+.modal-content .buttons-container{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-content .buttons-container .button{
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #fff;
+  border: solid 1px rgba(153, 153, 153, 1);
+  border-radius: 8px;
+  margin-left: 8px;
+  height: 32px;
+  width: 120px;
+}
+
+.modal-content .buttons-container .button.delete{
+  border: none;
+  color: #fff;
+  background-color: rgba(255, 81, 81, 1);
 }

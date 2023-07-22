@@ -39,28 +39,33 @@ const EditModal = ({title, content}) => {
   }
 
   return(
-    <div className='modal' onClick={handleClose}>
-      <div className='modal-content' onClick={e => e.stopPropagation()}>
-        <h3>Edit Item</h3>
-        <form onSubmit={handleSubmit}>
-          <label role='labeltext'>Title</label>
+    <div className='edit-modal' onClick={handleClose}>
+      <div className='edit-modal-content' onClick={e => e.stopPropagation()}>
+        <h3 className='header'>Edit Item</h3> 
+        <form onSubmit={handleSubmit} className='form'>
+          <label role='labeltext' className='label'>Title</label>
           <input
             type='text'
             value={title}
             name='title'
             placeholder='Hello world'
-            onChange={handleChange}></input>
+            onChange={handleChange}
+            className='input-field'></input>
             <br/>
-          <label role='labeltext'>Content</label>
+          <label role='labeltext' className='label'>Content</label>
           <textarea
             cols='30'
             rows='10'
             name='content'
             value={content}
             onChange={handleChange}
-            placeholder='Content here'></textarea>
-          <button onClick={handleClose}>Cancel</button>
-          <button type='submit'>Save</button>
+            placeholder='Content here'
+            className='input-field'>
+          </textarea>
+          <div className='buttons-container'>
+            <button onClick={handleClose} className='button'>Cancel</button>
+            <button type='submit' className='button save'>Save</button>
+          </div>
         </form>
       </div>
     </div>

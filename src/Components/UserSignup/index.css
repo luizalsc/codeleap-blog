@@ -39,11 +39,13 @@
   padding: 8px;
 }
 
+.signup-form .link{
+  align-self: flex-end;
+}
 
 .signup-form .button{
   text-align: center;
   text-decoration: none;
-  align-self: flex-end;
   height: 32px;
   width: 111px;
   color: #fff;
@@ -55,7 +57,7 @@
   margin-top: 16px;
 }
 
-.signup-form .button:hover{
+.signup-form .button:disabled{
   
   background-color: rgb(204, 204, 204);
 }

@@ -15,9 +15,14 @@ const PostComponent = ({content, title})=>{
     username: user.profile.username
   })
 
+  const [isDisabled, setIsDisabled] = useState(true)
+ 
   const handleChange = (event)=>{
     const value = event.target.value
     setPost({...post,[event.target.name]: value})
+    if(post.title && post.content){
+      setIsDisabled(false)
+    } 
   } 
 
   const handleSubmit = (event)=>{
@@ -31,7 +36,6 @@ const PostComponent = ({content, title})=>{
   event.target.reset()
   }
 
-  
   return(
     <div className='post-container'>
       <form
@@ -47,7 +51,6 @@ const PostComponent = ({content, title})=>{
           placeholder='Hello world'
           onChange={handleChange}
           className='input-field'></input>
-        <br/>
         <label role='labeltext' className='label'>Content</label>
         <textarea
           cols='30'
@@ -57,7 +60,7 @@ const PostComponent = ({content, title})=>{
           onChange={handleChange}
           placeholder='Content here'
           className='input-field'></textarea>
-        <button type='submit' className='button'>Create</button>
+        <button type='submit' className='button' disabled={isDisabled}>Create</button>
       </form>
     </div>
   )

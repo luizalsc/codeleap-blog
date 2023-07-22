@@ -44,3 +44,7 @@
   border: none;
   margin-top: 16px;
 }
+
+.form-container .button:disabled{
+  background-color: rgba(153, 153, 153, 1);
+}

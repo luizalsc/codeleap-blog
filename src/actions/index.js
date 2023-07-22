@@ -4,6 +4,7 @@ export const POSTS_LIST = 'POSTS_LIST'
 export const SHOW_EDIT_MODAL = 'SHOW_EDIT_MODAL'
 export const SHOW_DELETE_MODAL = 'SHOW_DELETE_MODAL'
 export const OFFSET_NUMBER = 'OFFSET_NUMBER'
+export const SHOW_MORE_POSTS = 'SHOW_MORE_POSTS'
 
 
 export function login (profile){
@@ -22,6 +23,13 @@ export function loginStatus (status){
 export function setPostsList (posts){
   return{
     type: POSTS_LIST,
+    payload: posts
+  }
+}
+
+export function showMorePosts (posts){
+  return{
+    type: SHOW_MORE_POSTS,
     payload: posts
   }
 }

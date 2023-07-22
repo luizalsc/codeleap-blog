@@ -10,10 +10,13 @@ function SignupComponent (){
 
   const [profile, setProfile] = useState({})
 
+  const [isDisabled, setIsDisabled] = useState(true)
+
   const handleInputChange = (event)=>{
     event.preventDefault()
     const value = event.target.value
     setProfile({...profile,[event.target.name]: value})
+    setIsDisabled(false)
   }
   const handleSubmit = ()=>{
     dispatch(login(profile))
@@ -32,15 +35,14 @@ function SignupComponent (){
               name='username'
               onChange={handleInputChange}
               className='input-field'></input> 
-            <Link to={`/posts`}>
-              <div>
+            <Link to={`/posts`} className='link'>
                 <button
                 className='button'
                 value={profile}
                 type='submit'
-                onClick={handleSubmit}>ENTER
+                onClick={handleSubmit}
+                disabled={isDisabled}>ENTER
                 </button>
-              </div>
             </Link>
           </div>
         </div>

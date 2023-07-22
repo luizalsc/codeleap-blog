@@ -9,3 +9,6 @@
   padding-left: 37px;
   min-height: 80px;
 }
+.navbar-link{
+  text-decoration: none;
+}

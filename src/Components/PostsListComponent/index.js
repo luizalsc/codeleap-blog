@@ -4,22 +4,15 @@ import { getPostsList, getMorePosts } from '../../services'
 import { useEffect, useState } from 'react'
 import { 
   setPostsList, 
-  showEditModal, 
-  showDeleteModal, 
   setOffsetNumber, 
   showMorePosts 
 } from '../../actions'
-import { EditModal } from '../Modals/EditModal'
-import { DeleteModal } from '../Modals/DeleteModal'
-import moment from 'moment'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faPenToSquare} from '@fortawesome/free-solid-svg-icons'
+import { Posts } from '../PostListItem'
 
 const PostsList = () =>{
   const dispatch = useDispatch()
   const posts = useSelector((state)=>state.posts)
-  const user = useSelector((state)=>state.user)
   let offset = useSelector((state)=>state.offset)
 
   const [hasMore, setHasMore] = useState(true)
@@ -27,18 +20,11 @@ const PostsList = () =>{
   useEffect(()=>{
     const fetchData = async()=>{
       const postsList = await getPostsList(offset)
+      console.log(postsList)
       dispatch(setPostsList(postsList.results))
     } 
     fetchData()
   }, [])
-
-  function handleDelete(id){
-    dispatch(showDeleteModal({status: true, id: id}))
-  } 
-
-  function handleEdit (id){
-      dispatch(showEditModal({status: true, id: id}))
-  } 
 
   const handleViewNext = ()=>{
     offset = offset + 10
@@ -50,7 +36,6 @@ const PostsList = () =>{
         setHasMore(false)
       }
     }
-    console.log('Handle View Next',offset)
     fetchData()
   }
 
@@ -63,7 +48,19 @@ const PostsList = () =>{
         <InfiniteScroll dataLength={posts.length} next={handleViewNext} hasMore={hasMore} loader={<p>Loading...</p>}>
           <ul>
             {posts.map((post, index) => (
-              <li key={`${post.id}-${index}`} className='list-item'>
+              <Posts key={`${post.id}-${index}`} username={post.username} id={post.id} dateTime={post.created_datetime} content={post.content} title={post.title}></Posts>
+              ))
+            }       
+          </ul>
+        </InfiniteScroll>
+      </div>
+    )
+  }
+}
+
+export { PostsList }
+
+{/* <li key={`${post.id}-${index}`} className='list-item'>
                 <div className='item-menu'>
                   <h3 className='header'>{post.title}</h3>
                   {user.profile.username === post.username ? 
@@ -84,13 +81,4 @@ const PostsList = () =>{
                 <div className='content'>
                   <p>{post.content}</p>
                 </div>
-              </li>))
-            }       
-          </ul>
-        </InfiniteScroll>
-      </div>
-    )
-  }
-}
-
-export { PostsList }
+              </li> */}

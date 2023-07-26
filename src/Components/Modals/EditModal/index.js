@@ -1,4 +1,6 @@
 import './editModal.css'
+import { Button } from '../../Button'
+import { PostForm } from '../../PostForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { editPost, getPostsList } from '../../../services'
@@ -41,29 +43,12 @@ const EditModal = ({title, content}) => {
     <div className='edit-modal' data-testid='edit-modal' onClick={()=>{handleClose(false)}}>
       <div className='edit-modal-content' onClick={e => e.stopPropagation()}>
         <h3 className='header'>Edit Item</h3> 
-        <form onSubmit={handleSubmit} className='form'>
-          <label role='labeltext' className='label'>Title</label>
-          <input
-            type='text'
-            value={title}
-            name='title'
-            placeholder='Hello world'
-            onChange={handleChange}
-            className='input-field'></input>
-            <br/>
-          <label role='labeltext' className='label'>Content</label>
-          <textarea
-            cols='30'
-            rows='10'
-            name='content'
-            value={content}
-            onChange={handleChange}
-            placeholder='Content here'
-            className='input-field'>
-          </textarea>
+        <form
+          onSubmit={handleSubmit} className='form'>
+          <PostForm content={content} title={title} handleChange={handleChange}/>
           <div className='edit-buttons-container'>
-            <button onClick={()=>{handleClose(false)}} className='button'>Cancel</button>
-            <button type='submit' className='button save'>Save</button>
+            <Button onClick={()=>{handleClose(false)}} className='button'>Cancel</Button>
+            <Button type='submit' className='button save'>Save</Button>
           </div>
         </form>
       </div>

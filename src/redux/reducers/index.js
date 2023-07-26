@@ -66,7 +66,6 @@ export function offsetNumberReducer( state = 10, action){
   }
 }
 
-
 const rootReducer = combineReducers({
   user: userReducer,
   posts: postListReducer,

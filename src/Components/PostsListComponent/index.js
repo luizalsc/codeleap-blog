@@ -1,8 +1,14 @@
 import './index.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPostsList } from '../../services'
+import { getPostsList, getMorePosts } from '../../services'
 import { useEffect, useState } from 'react'
-import { setPostsList, showEditModal, showDeleteModal, setOffsetNumber, showMorePosts } from '../../actions'
+import { 
+  setPostsList, 
+  showEditModal, 
+  showDeleteModal, 
+  setOffsetNumber, 
+  showMorePosts 
+} from '../../actions'
 import { EditModal } from '../Modals/EditModal'
 import { DeleteModal } from '../Modals/DeleteModal'
 import moment from 'moment'
@@ -38,12 +44,13 @@ const PostsList = () =>{
     offset = offset + 10
     dispatch(setOffsetNumber(offset))
     const fetchData = async () =>{
-      const postsList = await getPostsList(offset)
+      const postsList = await getMorePosts(offset)
       dispatch(showMorePosts(postsList.results))
       if( posts.length === postsList.count ){
         setHasMore(false)
       }
     }
+    console.log('Handle View Next',offset)
     fetchData()
   }
 
@@ -65,7 +72,7 @@ const PostsList = () =>{
                         <span><FontAwesomeIcon icon={faTrash} className='icon'/></span>
                       </button>
                       <DeleteModal/>
-                      <button onClick={()=>{handleEdit(post.id)}} value={post.id} className='button'><span><FontAwesomeIcon icon={faPenToSquare} className='icon'/></span></button>
+                      <button onClick={()=>{handleEdit(post.id)}} className='button'><span><FontAwesomeIcon icon={faPenToSquare} className='icon'/></span></button>
                       <EditModal/>
                     </div> : 
                       <></>}
@@ -81,9 +88,6 @@ const PostsList = () =>{
             }       
           </ul>
         </InfiniteScroll>
-        <button>
-          <a href='#container'>Voltar ao topo</a>
-        </button>
       </div>
     )
   }

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { login, loginStatus } from '../../actions'
 import { Link } from 'react-router-dom'
 
-function SignupComponent (){
+function SignupComponent ({username}){
   
   const dispatch = useDispatch()
 
@@ -20,19 +20,20 @@ function SignupComponent (){
   }
   const handleSubmit = ()=>{
     dispatch(login(profile))
-    dispatch(loginStatus(true))
+    dispatch(loginStatus(true)) 
   }
 
     return(
       <main className='main'>
         <div className='signup-container'>
           <h1 className='header'>Welcome to CodeLeap network!</h1>
-          <div value={profile} role='loginform' onSubmit={handleSubmit} className='signup-form'>
+          <form value={profile} role='form' onSubmit={handleSubmit} className='signup-form'>
             <label htmlFor='username' className='label'>Please enter your username</label>
             <input
               type='text'
               placeholder='John doe'
               name='username'
+              value={username}
               onChange={handleInputChange}
               className='input-field'></input> 
             <Link to={`/posts`} className='link'>
@@ -44,7 +45,7 @@ function SignupComponent (){
                 disabled={isDisabled}>ENTER
                 </button>
             </Link>
-          </div>
+          </form>
         </div>
       </main>
     )

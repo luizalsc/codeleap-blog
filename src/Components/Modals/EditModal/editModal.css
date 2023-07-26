@@ -44,7 +44,7 @@
   margin-top: 8px;
 }
 
-.edit-modal-content .buttons-container{
+.edit-modal-content .edit-buttons-container{
   display: flex;
   justify-content: flex-end;
   margin-top: 24px;

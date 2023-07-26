@@ -1,4 +1,4 @@
-import './index.css'
+import './editModal.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { editPost, getPostsList } from '../../../services'
@@ -18,8 +18,8 @@ const EditModal = ({title, content}) => {
     setPost({...post,[event.target.name]: value})
   }
 
-  const handleClose = ()=>{
-    dispatch(showEditModal({status: false}))
+  function handleClose (status){
+    dispatch(showEditModal({status: status}))
   }
 
   const handleSubmit = (event)=>{
@@ -29,9 +29,8 @@ const EditModal = ({title, content}) => {
       const postsList = await getPostsList(offset)
       dispatch(setPostsList(postsList.results))
     }
- 
-  fetchData()
-  handleClose()
+    fetchData()
+    handleClose(false)
   }
 
   if(!status){
@@ -39,7 +38,7 @@ const EditModal = ({title, content}) => {
   }
 
   return(
-    <div className='edit-modal' onClick={handleClose}>
+    <div className='edit-modal' data-testid='edit-modal' onClick={()=>{handleClose(false)}}>
       <div className='edit-modal-content' onClick={e => e.stopPropagation()}>
         <h3 className='header'>Edit Item</h3> 
         <form onSubmit={handleSubmit} className='form'>
@@ -62,8 +61,8 @@ const EditModal = ({title, content}) => {
             placeholder='Content here'
             className='input-field'>
           </textarea>
-          <div className='buttons-container'>
-            <button onClick={handleClose} className='button'>Cancel</button>
+          <div className='edit-buttons-container'>
+            <button onClick={()=>{handleClose(false)}} className='button'>Cancel</button>
             <button type='submit' className='button save'>Save</button>
           </div>
         </form>

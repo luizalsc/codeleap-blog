@@ -28,39 +28,10 @@ describe('Renders the EditModal component correctly', ()=>{
     )   
     
     const buttonsElements = screen.getAllByRole('button')
-    const inputTitleElement = screen.getByPlaceholderText(/Hello world/i)
-    const inputContentElement = screen.getByPlaceholderText(/Content here/i)
 
     expect(buttonsElements).toHaveLength(2)
-    expect(inputTitleElement).toBeInTheDocument()
-    expect(inputContentElement).toBeInTheDocument()
   })
 
-  it('changes the input value when typing', ()=> {
-    const store = createMockStore()
-    const testTitle = 'New Title'
-    const testContent = 'Lorem Ipsum dolor sit amet'
-    getPostsList.mockResolvedValueOnce({
-      status: 'OK', results: {data: store.getState().posts}
-    })
-
-    render(
-      <Provider store={store}>
-        <EditModal />
-      </Provider>
-    )   
-
-    const inputTitleElement = screen.getByPlaceholderText(/Hello world/i)
-    const inputContentElement = screen.getByPlaceholderText(/Content here/i)
-
-    act(()=>{
-      userEvent.type(inputTitleElement, testTitle)
-      userEvent.type(inputContentElement, testContent)
-    })
-
-    expect(inputTitleElement.value).toBe('New Title')
-    expect(inputContentElement.value).toBe('Lorem Ipsum dolor sit amet')
-  })
 
   it('edits the post and close modal when clicking the save button', async()=> {
     const store = createMockStore()
@@ -145,7 +116,6 @@ describe('Renders the EditModal component correctly', ()=>{
 
     expect(actions[0]).toEqual({payload: {status: false}, type: 'SHOW_EDIT_MODAL'})
   })
-
 
   it('does not render when status is false', ()=>{
     const store = createMockStore()

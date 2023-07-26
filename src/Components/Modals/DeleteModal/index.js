@@ -1,4 +1,5 @@
 import './deleteModal.css'
+import { Button } from '../../Button'
 import { deletePost, getPostsList } from "../../../services"
 import { useDispatch, useSelector } from "react-redux"
 import { setPostsList, showDeleteModal } from "../../../actions"
@@ -31,8 +32,8 @@ const DeleteModal = ()=>{
       <div className='modal-content' onClick={e => e.stopPropagation()}>
         <h3 className='header'>Are you sure you want to delete this item?</h3>
         <div className='buttons-container'>
-          <button onClick={handleClose} className='button'>Cancel</button>
-          <button onClick={handleDelete} className='button delete'>Delete</button>
+          <Button onClick={handleClose} className='button'>Cancel</Button>
+          <Button onClick={handleDelete} className='button delete'>Delete</Button>
         </div>
       </div>
     </div>

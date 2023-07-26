@@ -56,7 +56,7 @@ export function deleteModalReducer( state = false, action){
   }
 }
 
-export function offsetNumberReducer( state = 0, action){
+export function offsetNumberReducer( state = 10, action){
   switch(action.type){
     case OFFSET_NUMBER: {
       return action.payload

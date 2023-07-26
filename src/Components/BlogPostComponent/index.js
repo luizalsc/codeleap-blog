@@ -10,10 +10,7 @@ const PostComponent = ({content, title})=>{
   const dispatch = useDispatch()
   const user = useSelector((state)=> state.user)
   const offset = useSelector((state)=> state.offset)
-
-  const [post, setPost] = useState({
-    username: user.profile.username
-  })
+  const [post, setPost] = useState({})
 
   const [isDisabled, setIsDisabled] = useState(true)
  
@@ -27,6 +24,7 @@ const PostComponent = ({content, title})=>{
 
   const handleSubmit = (event)=>{
     event.preventDefault()
+    setPost({...post, username: user.profile.username})
     const fetchData = async () =>{
       await createNewPost(post)
       const postsList = await getPostsList(offset)

@@ -10,6 +10,11 @@ async function createNewPost (post){
 }
 
 async function getPostsList(offsetNumber){
+  const response = await fetch(`https://dev.codeleap.co.uk/careers/?limit=${offsetNumber}&offset=0`)
+  return (await response.json())
+}
+
+async function getMorePosts(offsetNumber){
   const response = await fetch(`https://dev.codeleap.co.uk/careers/?limit=10&offset=${offsetNumber}`)
   return (await response.json())
 }
@@ -35,4 +40,4 @@ async function editPost(postId, post){
     return (editedPost)
 }
 
-export { createNewPost, getPostsList, deletePost, editPost }
+export { createNewPost, getPostsList, deletePost, editPost, getMorePosts }

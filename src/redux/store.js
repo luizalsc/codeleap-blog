@@ -1,21 +1,18 @@
 import {createStore} from 'redux'
-import { combineReducers } from 'redux'
-import { 
-  userReducer,
-  postListReducer,
-  editModalReducer,
-  deleteModalReducer,
-  offsetNumberReducer
-} from './reducers'
+import storage from 'redux-persist/lib/storage'
+import { persistReducer, persistStore } from 'redux-persist'
+import rootReducer from './reducers'
 
-const rootReducer = combineReducers({
-  user: userReducer,
-  posts: postListReducer,
-  editStatus: editModalReducer,
-  deleteStatus: deleteModalReducer,
-  offset: offsetNumberReducer
-})
+const persistConfig ={
+  key: 'root',
+  storage,
+  whiteList: ['userReducer']
+}
 
-const store = createStore(rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export { store }
+const store = createStore(persistedReducer)
+
+const persistor = persistStore(store)
+
+export { store, persistor }

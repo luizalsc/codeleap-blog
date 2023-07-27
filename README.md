@@ -1,6 +1,6 @@
 About the project
 ==
-<img src='https://commons.wikimedia.org/wiki/File:React-icon.svg'>
+<img src="https://commons.wikimedia.org/wiki/File:React-icon.svg" width="50px">
 A application using **React** and **Redux**.
 This project is a simple application that allows the user to signup and create posts. After a post is created the user can edit or delete the previously created posts, this feature is only allowed to the author of the post.\
 You can check the project **[here](https://luizalsc.github.io/codeleap-blog/)**!

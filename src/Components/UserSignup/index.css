@@ -44,10 +44,8 @@
 }
 
 .signup-form .button{
-  text-align: center;
-  text-decoration: none;
   height: 32px;
-  width: 111px;
+  width: 120px;
   color: #fff;
   font-size: 16px;
   font-weight: 700;
@@ -55,9 +53,26 @@
   background-color: rgba(118, 149, 236, 1);
   border: none;
   margin-top: 16px;
+  transition: ease-in-out 0.3s;
 }
 
 .signup-form .button:disabled{
-  
   background-color: rgb(204, 204, 204);
+}
+
+.signup-form .button:disabled:hover{
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.signup-form .button:hover{
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+@media(max-width: 480px) {
+  .signup-container{
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 }

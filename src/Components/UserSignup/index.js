@@ -1,4 +1,5 @@
 import './index.css'
+import { Button } from '../Button'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { login, loginStatus } from '../../actions'
@@ -17,6 +18,9 @@ function SignupComponent ({username}){
     const value = event.target.value
     setProfile({...profile,[event.target.name]: value})
     setIsDisabled(false)
+    if(value === ''){
+      setIsDisabled(true)
+    }
   }
   const handleSubmit = ()=>{
     dispatch(login(profile))
@@ -37,13 +41,13 @@ function SignupComponent ({username}){
               onChange={handleInputChange}
               className='input-field'></input> 
             <Link to={`/posts`} className='link'>
-                <button
+                <Button
                 className='button'
                 value={profile}
                 type='submit'
                 onClick={handleSubmit}
                 disabled={isDisabled}>ENTER
-                </button>
+                </Button>
             </Link>
           </form>
         </div>

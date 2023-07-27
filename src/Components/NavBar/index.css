@@ -12,3 +12,10 @@
 .navbar-link{
   text-decoration: none;
 }
+
+@media(max-width: 480px){
+  .navbar{
+    justify-content: center;
+    padding: 0;
+  }
+}

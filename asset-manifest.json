@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/codeleap-blog/static/css/main.9f557caf.css",
+    "main.css": "/codeleap-blog/static/css/main.9355cf09.css",
     "main.js": "/codeleap-blog/static/js/main.b854c5a3.js",
     "static/js/787.e67d8918.chunk.js": "/codeleap-blog/static/js/787.e67d8918.chunk.js",
     "index.html": "/codeleap-blog/index.html",
-    "main.9f557caf.css.map": "/codeleap-blog/static/css/main.9f557caf.css.map",
+    "main.9355cf09.css.map": "/codeleap-blog/static/css/main.9355cf09.css.map",
     "main.b854c5a3.js.map": "/codeleap-blog/static/js/main.b854c5a3.js.map",
     "787.e67d8918.chunk.js.map": "/codeleap-blog/static/js/787.e67d8918.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f557caf.css",
+    "static/css/main.9355cf09.css",
     "static/js/main.b854c5a3.js"
   ]
 }

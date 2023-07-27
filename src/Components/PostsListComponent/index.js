@@ -20,7 +20,6 @@ const PostsList = () =>{
   useEffect(()=>{
     const fetchData = async()=>{
       const postsList = await getPostsList(offset)
-      console.log(postsList)
       dispatch(setPostsList(postsList.results))
     } 
     fetchData()

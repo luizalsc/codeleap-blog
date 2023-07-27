@@ -1,6 +1,7 @@
+import './PostListItem.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faPenToSquare} from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faPenToSquare, faX} from '@fortawesome/free-solid-svg-icons'
 import { 
   showEditModal, 
   showDeleteModal, 
@@ -27,7 +28,8 @@ const Posts = ({username, id, dateTime, content, title}) =>{
         <h3 className='header'>{title}</h3>
         {user.profile.username === username ? 
           <div className='buttons'>
-            <button onClick={()=>{handleDelete(id)}} className='button'>
+            <button onClick={()=>{handleDelete(id)}} className='button delete'>
+              <span><FontAwesomeIcon icon={faX} className='icon x-icon'/> </span>
               <span><FontAwesomeIcon icon={faTrash} className='icon'/></span>
             </button>
               <DeleteModal/>

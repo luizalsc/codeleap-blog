@@ -47,7 +47,7 @@ const EditModal = ({title, content}) => {
           onSubmit={handleSubmit} className='form'>
           <PostForm content={content} title={title} handleChange={handleChange}/>
           <div className='edit-buttons-container'>
-            <Button onClick={()=>{handleClose(false)}} className='button'>Cancel</Button>
+            <Button onClick={()=>{handleClose(false)}} className='button generic'>Cancel</Button>
             <Button type='submit' className='button save'>Save</Button>
           </div>
         </form>

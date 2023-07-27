@@ -32,7 +32,7 @@ const DeleteModal = ()=>{
       <div className='modal-content' onClick={e => e.stopPropagation()}>
         <h3 className='header'>Are you sure you want to delete this item?</h3>
         <div className='buttons-container'>
-          <Button onClick={handleClose} className='button'>Cancel</Button>
+          <Button onClick={handleClose} className='button generic'>Cancel</Button>
           <Button onClick={handleDelete} className='button delete'>Delete</Button>
         </div>
       </div>

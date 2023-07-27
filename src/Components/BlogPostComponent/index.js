@@ -13,16 +13,22 @@ const PostComponent = ({content, title})=>{
   const user = useSelector((state)=> state.user)
   const offset = useSelector((state)=> state.offset)
 
-  const [post, setPost] = useState({username: user.profile.username})
+  const [post, setPost] = useState({
+    username: user.profile.username,
+    title: '',
+    content: ''
+  })
   const [isDisabled, setIsDisabled] = useState(true)
  
   const handleChange = (event)=>{
     const value = event.target.value
     setPost({...post,[event.target.name]: value})
-    if(post.title && post.content){
-      setIsDisabled(false)
-    }
-  } 
+
+    if(post.title === '' || post.content === ''){
+      setIsDisabled(true)
+    }else{setIsDisabled(false)}
+  }
+
 
   const handleSubmit = (event)=>{
     event.preventDefault()

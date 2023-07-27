@@ -1,4 +1,5 @@
 {
+  "homepage": "https://luizalsc.github.io/codeleap-blog",
   "name": "codeleap-front-end-test",
   "version": "0.1.0",
   "private": true,
@@ -21,6 +22,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -45,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^5.0.0",
     "jest": "^27.5.1",
     "redux-mock-store": "^1.5.4"
   }

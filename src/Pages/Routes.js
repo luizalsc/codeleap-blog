@@ -6,7 +6,7 @@ import { MainScreenPage } from './MainScreenPage'
 function AppRoutes (){
   
     return(
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route exact path='/' element={<SignupPage />}/>
           <Route exact path='/posts' element={<MainScreenPage />}/>

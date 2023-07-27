@@ -1,7 +1,7 @@
 About the project
 ==
 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" width="50px">
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" width="50px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Cib-redux_%28CoreUI_Icons_v1.0.0%29.svg" width="50px">
 
 A application using **React** and **Redux**.
 This project is a simple application that allows the user to signup and create posts. After a post is created the user can edit or delete the previously created posts, this feature is only allowed to the author of the post.\

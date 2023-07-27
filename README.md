@@ -6,7 +6,7 @@ You can check the project **[here](https://luizalsc.github.io/codeleap-blog/)**!
 
 Preview
 ==
-![codeleap-blog](https://github.com/luizalsc/CodeLeapTest/assets/111703755/72972a04-27a6-4373-a8d3-6cf2ec833b31)
+![codeleap-blog](https://github.com/luizalsc/codeleap-blog/assets/111703755/a8be1512-13d3-4ad7-ab09-1a8af3c55451)
 
 # Features
 * Signup page
